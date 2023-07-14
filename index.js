@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-const db = require('@cyclic.sh/dynamodb')
+const CyclicDb = require("@cyclic.sh/dynamodb")
+const db = CyclicDb("agile-plum-sparrowCyclicDB")
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -19,43 +20,71 @@ app.use(express.urlencoded({ extended: true }))
 // app.use(express.static('public', options))
 // #############################################################################
 
-// Create or Update an item
-app.post('/:col/:key', async (req, res) => {
+const TODO_COLLECTION = 'todos'
+const COUNTER_COLLECTION = 'counters'
+
+/**
+ * 
+ * @param {string} collection the name of the collection to increment
+ * @returns {number} the new value of the counter
+ */
+async function incrementCount(collection) {
+  let counter = await db.collection(COUNTER_COLLECTION).get(collection)
+  console.log(`counter: ${JSON.stringify(counter, null, 2)}`)
+
+  let value = 0
+
+  if (counter === null) {
+    value = 1
+  }
+  else {
+    value = counter.props.value + 1
+  }
+
+  const updatedCounter = await db.collection(COUNTER_COLLECTION).set(collection, { value: value })
+  console.log(`counter: ${JSON.stringify(counter, null, 2)}`)
+  return updatedCounter.props.value
+}
+
+// Create an item
+app.post('/todos.create', async (req, res) => {
   console.log(req.body)
 
-  const col = req.params.col
-  const key = req.params.key
-  console.log(`from collection: ${col} delete key: ${key} with params ${JSON.stringify(req.params)}`)
-  const item = await db.collection(col).set(key, req.body)
-  console.log(JSON.stringify(item, null, 2))
-  res.json(item).end()
-})
-
-// Delete an item
-app.delete('/:col/:key', async (req, res) => {
-  const col = req.params.col
-  const key = req.params.key
-  console.log(`from collection: ${col} delete key: ${key} with params ${JSON.stringify(req.params)}`)
-  const item = await db.collection(col).delete(key)
+  const key = await incrementCount(TODO_COLLECTION)
+  console.log(`key: ${key}`)
+  const item = await db.collection(TODO_COLLECTION).set(key.toString(), { id: key, ...req.body })
   console.log(JSON.stringify(item, null, 2))
   res.json(item).end()
 })
 
 // Get a single item
-app.get('/:col/:key', async (req, res) => {
-  const col = req.params.col
+app.get('/todos.get', async (req, res) => {
+  console.log(req.query)
+  const key = req.query.id
+  const item = await db.collection(TODO_COLLECTION).get(key)
+  console.log(JSON.stringify(item, null, 2))
+  res.json(item).end()
+})
+
+// Update an item
+app.post('/todos.update', async (req, res) => {
   const key = req.params.key
-  console.log(`from collection: ${col} get key: ${key} with params ${JSON.stringify(req.params)}`)
-  const item = await db.collection(col).get(key)
+  const item = await db.collection(TODO_COLLECTION).set(key, req.body)
+  console.log(JSON.stringify(item, null, 2))
+  res.json(item).end()
+})
+
+// Delete an item
+app.post('/todos.delete', async (req, res) => {
+  const key = req.body.id.toString()
+  const item = await db.collection(TODO_COLLECTION).delete(key)
   console.log(JSON.stringify(item, null, 2))
   res.json(item).end()
 })
 
 // Get a full listing
-app.get('/:col', async (req, res) => {
-  const col = req.params.col
-  console.log(`list collection: ${col} with params: ${JSON.stringify(req.params)}`)
-  const items = await db.collection(col).list()
+app.get('/todos.list', async (req, res) => {
+  const items = await db.collection(TODO_COLLECTION).list()
   console.log(JSON.stringify(items, null, 2))
   res.json(items).end()
 })
