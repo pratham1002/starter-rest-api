@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>When Noomb Met Noomb</title>
+  <style>
+    header {
+      height: 10vh;
+      /* background-color: red; */
+      object-fit: cover;
+    }
+
+    body {
+      overflow: hidden;
+
+      font-size: 4vh;
+    }
+
+    img {
+      z-index: 0;
+      width: 49%;
+      height: 90vh;
+      margin: 0%;
+      padding: 0%;
+      opacity: 0.4;
+      object-fit: cover;
+    }
+
+    header {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 0px;
+      font-family: Arial, sans-serif;
+    }
+
+    #days:after {
+      content: ":";
+    }
+
+    #hours:after {
+      content: ":";
+    }
+
+    #minutes:after {
+      content: ":";
+    }
+
+    #seconds:after {
+      content: "";
+    }
+
+    ul {
+      height: 100%;
+    }
+
+    .todo-block {
+      position: absolute;
+      top: 40vh;
+      width: 30%;
+      height: 50vh;
+      align-self: center;
+      border: 1px solid black;
+      overflow-wrap: normal;
+    }
+
+    #pratham {
+      left: 10%;
+    }
+
+    .pratham-todos {
+      list-style-type: none;
+    }
+
+
+    #appu {
+      left: 60%;
+    }
+
+    .appu-todos {
+      list-style-type: none; 
+    }
+
+    .todo-block-2 ul li {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+
+    .todo-block-1 ul li {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+
+    .add-todo-form {
+      height: 5vh;
+
+      border-top: 1px solid black;
+
+      /* fix it to bottom of the div */
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex; 
+
+      background-color: transparent;
+    }
+
+    /* make the button in the add-todo-form fixed to the left and full height */
+    .add-todo-form button {
+      /* width: 20%; */
+      /* position: absolute; */
+      flex: 2;
+      background-color: transparent;
+    }
+
+    /* make the input in the add-todo-form fixed to the left and full height */
+    .add-todo-form input {
+      height: 100%;
+      /* width: 70%; */
+      /* position: absolute; */
+      box-sizing: border-box; /* add this */
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      flex: 7;
+      background-color: transparent;
+    }
+
+    /* make the label in the add-todo-form fixed to the left and full height */
+    .add-todo-form p {
+      /* width: 10%; */
+      /* position: absolute; */
+      flex: 1;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+
+    // Set the date we're counting down to
+    var countDownDate = new Date("July 30, 2023 21:30:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const daysElement = document.getElementById('days');
+      daysElement.innerHTML = days;
+
+      const hoursElement = document.getElementById('hours');
+      hoursElement.innerHTML = hours;
+
+      const minutesElement = document.getElementById('minutes');
+      minutesElement.innerHTML = minutes;
+
+      const secondsElement = document.getElementById('seconds');
+      secondsElement.innerHTML = seconds;
+
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "NOOMBS MIL GAYE";
+      }
+    }, 1000);
+  </script>
+  <main>
+    <header id="countdown">
+      Noombs Milne Mein
+      <span id='days'>0</span>
+      <span id='hours'>0</span>
+      <span id='minutes'>0</span>
+      <span id='seconds'>0</span>
+    </header>
+    <img
+      src="https://lh3.googleusercontent.com/pw/AIL4fc8e4ET1aVCVILVENttJXzA--lj-6tySqSJD21YBZLuqwIZKAH28liIY_Ee-dvAkCvufFHKkBsv6WDZ9puCxG5oDvnS5NWMGdUx3rvm00VxT-Kr-48bgsJu2__R41aikB40zlsv-ov9HEcSG0lH90n2P=w667-h889-s-no?authuser=0">
+    <img
+      src="https://lh3.googleusercontent.com/pw/AIL4fc9GBkzRvDUIPzxnvHVyfBpGOZF8XecIxkBYUy7Pfy6MyN29QlLRLUAUevQiFoXEThxX56qf5aG-Fljvo8GLtuUSpBzR01fWQVkJ6-36o7SGy9FXYuPaE8MGhb433cA9C3vyH35b5i7xzdvoMsZQRDBb=w667-h889-s-no?authuser=0">
+
+    <div id="pratham" class="todo-block">
+      <ul class="pratham-todos">
+
+      </ul>
+      <form id="add-pratham-todo" class="add-todo-form">
+        <p>
+          😳
+        </p>
+        <input type="text" id="pratham-todo-input" placeholder="What's on you mind?">
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <div id="appu" class="todo-block">
+      <ul class="appu-todos">
+
+      </ul>
+      <form id="add-appu-todo" class="add-todo-form">
+        <p>
+          ❤️
+        </p>
+        <input type="text" id="appu-todo-input" placeholder="What's on you mind?" name="add-todo">
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <script>
+      window.onload = async () => {
+        await rerender();
+      }
+      const prathamAddTODOForm = document.getElementById('add-pratham-todo');
+
+      prathamAddTODOForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const prathamTODOInput = document.getElementById('pratham-todo-input');
+        const prathamTODO = prathamTODOInput.value;
+        prathamTODOInput.value = '';
+
+        await fetch('/todos.create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            creator: 'pratham',
+            text: prathamTODO,
+            created_at: new Date().toISOString()
+          })
+        });
+        
+        await rerender();
+      });
+
+      const appuAddTODOForm = document.getElementById('add-appu-todo');
+
+        appuAddTODOForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const appuTODOInput = document.getElementById('appu-todo-input');
+          const appuTODO = appuTODOInput.value;
+          appuTODOInput.value = '';
+
+          await fetch('/todos.create', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              creator: 'appu',
+              text: appuTODO,
+            })
+          });
+        
+        await rerender();
+      });
+
+      async function rerender() {
+        const listTodosResponse = await fetch('/todos.list');
+
+        const { results } = await listTodosResponse.json();
+
+        console.log(results);
+
+        const prathamTODOList = document.getElementsByClassName('pratham-todos');
+        const appuTODOList = document.getElementsByClassName('appu-todos');
+
+        prathamTODOList[0].innerHTML = '';
+
+        appuTODOList[0].innerHTML = '';
+
+        const todos = [];
+
+        for (let i = 0; i < results.length; i++) {
+          console.log(results[i], results[i].key);
+          const getTODOResponse = await fetch(`/todos.get?id=${results[i].key}`);
+          const {props} = await getTODOResponse.json();
+          console.log({props});
+          todos.push(props);
+        };
+
+        console.log({todos});
+
+        todos.forEach((todo) => {
+          console.log(todo);
+          if (todo.creator === 'pratham') {
+            const prathamTODOListItem = document.createElement('li');
+            prathamTODOListItem.innerHTML = `<span class="custom-bullet">😳</span> ${todo.text}`;
+            prathamTODOList[0].appendChild(prathamTODOListItem);
+          } else {
+            const appuTODOListItem = document.createElement('li');
+            appuTODOListItem.innerHTML = `<span class="custom-bullet">❤️</span> ${todo.text}`;
+            appuTODOList[0].appendChild(appuTODOListItem);
+          }
+        });
+      }
+    </script>
+  </main>
+</body>
+
+</html>
