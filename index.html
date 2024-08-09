@@ -1,312 +1,247 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>When Noomb Met Noomb</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    header {
-      height: 10vh;
-      /* background-color: red; */
-      object-fit: cover;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    body {
+    body,
+    html {
+      height: 100%;
       overflow: hidden;
 
-      font-size: 4vh;
+      /* Background color should be a valentine's day pink */
+      background-color: #ffcccc;
     }
 
-    img {
-      z-index: 0;
-      width: 49%;
-      height: 90vh;
-      margin: 0%;
-      padding: 0%;
-      opacity: 0.4;
-      object-fit: cover;
-    }
-
-    header {
-      text-align: center;
-      font-size: 60px;
-      margin-top: 0px;
-      font-family: Arial, sans-serif;
-    }
-
-    #days:after {
-      content: ":";
-    }
-
-    #hours:after {
-      content: ":";
-    }
-
-    #minutes:after {
-      content: ":";
-    }
-
-    #seconds:after {
-      content: "";
-    }
-
-    ul {
-      height: 100%;
-    }
-
-    .todo-block {
-      position: absolute;
-      top: 40vh;
-      width: 30%;
-      height: 50vh;
-      align-self: center;
-      border: 1px solid black;
-      overflow-wrap: normal;
-    }
-
-    #pratham {
-      left: 10%;
-    }
-
-    .pratham-todos {
-      list-style-type: none;
-    }
-
-
-    #appu {
-      left: 60%;
-    }
-
-    .appu-todos {
-      list-style-type: none; 
-    }
-
-    .todo-block-2 ul li {
-      word-wrap: break-word;
-      white-space: normal;
-    }
-
-    .todo-block-1 ul li {
-      word-wrap: break-word;
-      white-space: normal;
-    }
-
-    .add-todo-form {
-      height: 5vh;
-
-      border-top: 1px solid black;
-
-      /* fix it to bottom of the div */
-      position: absolute;
-      bottom: 0;
+    .container {
       width: 100%;
-      display: flex; 
-
-      background-color: transparent;
-    }
-
-    /* make the button in the add-todo-form fixed to the left and full height */
-    .add-todo-form button {
-      /* width: 20%; */
-      /* position: absolute; */
-      flex: 2;
-      background-color: transparent;
-    }
-
-    /* make the input in the add-todo-form fixed to the left and full height */
-    .add-todo-form input {
       height: 100%;
-      /* width: 70%; */
-      /* position: absolute; */
-      box-sizing: border-box; /* add this */
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      flex: 7;
-      background-color: transparent;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    /* make the label in the add-todo-form fixed to the left and full height */
-    .add-todo-form p {
-      /* width: 10%; */
-      /* position: absolute; */
-      flex: 1;
+    .top-section {
+      height: 33vh;
+      /* Top 1/3rd of the screen */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .title {
+      height: 20%;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: #808080; /* Medium Gray */
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .image-timer {
+      height: 75%;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .image {
+      width: 25%;
+      height: 100%;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer {
+      width: 60%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 1em;
+      border: 2px solid #ffd700;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #ffffff;
+      /* Soft White background */
+      flex-wrap: nowrap;
+      /* Prevent wrapping */
+    }
+
+    .timer-section {
       text-align: center;
+      margin: 0 0.625em;
+      /* Space between sections */
+      flex: 1 1 auto;
+      /* Allow sections to grow and shrink */
+      min-width: 0;
+      /* Allow shrinking below content size */
+      padding: 3px;
+      /* Add padding to ensure content doesn't overlap */
+    }
+
+    .timer-value {
+      display: block;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ff6699;
+    }
+
+    .timer-label {
+      font-size: 0.3em;
+      color: #ff99cc;
+      text-transform: uppercase;
+      margin-top: 5px;
+      letter-spacing: 1px;
+    }
+
+
+
+
+    .image-placeholder {
+      width: 35%;
+      height: 100%;
+      background-image: url('https://4kwallpapers.com/images/walls/thumbs_3t/10248.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #000;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-pair {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      height: 62vh;
+      /* Bottom 2/3rds of the screen */
+      margin-top: 20px;
+      /* Margin between the middle section and bottom images */
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .image-pair .image {
+      width: 40%;
+      opacity: 0.4;
+      background-color: #ffffff;
+      /* Solid background color */
+      border: 1px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
 
 <body>
-  <script>
 
+  <div class="container">
+    <!-- Top Section: Title, Image and Timer -->
+    <div class="top-section">
+      <div class="title">
+        Noombs Milne Mein...
+      </div>
+      <div class="image-timer">
+        <div class="image-placeholder"></div>
+        <div class="timer">
+          <div class="timer-section">
+            <span id="days" class="timer-value">00</span>
+            <span class="timer-label">Days</span>
+          </div>
+          <div class="timer-section">
+            <span id="hours" class="timer-value">00</span>
+            <span class="timer-label">Hours</span>
+          </div>
+          <div class="timer-section">
+            <span id="minutes" class="timer-value">00</span>
+            <span class="timer-label">Mins</span>
+          </div>
+          <div class="timer-section">
+            <span id="seconds" class="timer-value">00</span>
+            <span class="timer-label">Secs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section: Two Images Side by Side -->
+    <div class="image-pair">
+      <img class="image"
+        src="https://lh3.googleusercontent.com/pw/AIL4fc8e4ET1aVCVILVENttJXzA--lj-6tySqSJD21YBZLuqwIZKAH28liIY_Ee-dvAkCvufFHKkBsv6WDZ9puCxG5oDvnS5NWMGdUx3rvm00VxT-Kr-48bgsJu2__R41aikB40zlsv-ov9HEcSG0lH90n2P=w667-h889-s-no?authuser=0">
+      <img class="image"
+        src="https://lh3.googleusercontent.com/pw/AIL4fc9GBkzRvDUIPzxnvHVyfBpGOZF8XecIxkBYUy7Pfy6MyN29QlLRLUAUevQiFoXEThxX56qf5aG-Fljvo8GLtuUSpBzR01fWQVkJ6-36o7SGy9FXYuPaE8MGhb433cA9C3vyH35b5i7xzdvoMsZQRDBb=w667-h889-s-no?authuser=0">
+    </div>
+  </div>
+
+  <script>
     // Set the date we're counting down to
     var countDownDate = new Date("Aug 15, 2024 07:00:00").getTime();
 
-    // Update the count down every 1 second
-    var x = setInterval(function () {
+    // Update the countdown every 1 second
+    var countdownfunction = setInterval(function () {
 
       // Get today's date and time
       var now = new Date().getTime();
 
-      // Find the distance between now and the count down date
+      // Find the distance between now and the countdown date
       var distance = countDownDate - now;
 
-      // Time calculations for days, hours, minutes and seconds
+      // Time calculations for days, hours, minutes, and seconds
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      const daysElement = document.getElementById('days');
-      daysElement.innerHTML = days;
+      // Display the result in the respective elements
+      document.getElementById("days").innerHTML = days < 10 ? `0${days}` : days;
+      document.getElementById("hours").innerHTML = hours < 10 ? `0${hours}` : hours;
+      document.getElementById("minutes").innerHTML = minutes < 10 ? `0${minutes}` : minutes;
+      document.getElementById("seconds").innerHTML = seconds < 10 ? `0${seconds}` : seconds;
 
-      const hoursElement = document.getElementById('hours');
-      hoursElement.innerHTML = hours;
-
-      const minutesElement = document.getElementById('minutes');
-      minutesElement.innerHTML = minutes;
-
-      const secondsElement = document.getElementById('seconds');
-      secondsElement.innerHTML = seconds;
-
-      // If the count down is over, write some text 
+      // If the countdown is over, display a message
       if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("countdown").innerHTML = "NOOMBS MIL GAYE";
+        clearInterval(countdownfunction);
+        document.querySelector(".timer").innerHTML = "NOOMBS MIL GAYE";
       }
     }, 1000);
+
+    const milkMochaImageLinks = [
+      "https://4kwallpapers.com/images/walls/thumbs_3t/10248.jpg",
+      "https://4kwallpapers.com/images/walls/thumbs_3t/10085.png",
+      "https://4kwallpapers.com/images/walls/thumbs_3t/10100.png",
+      "https://4kwallpapers.com/images/walls/thumbs_3t/10076.jpg",
+      "https://4kwallpapers.com/images/walls/thumbs_3t/10102.png",
+      "https://4kwallpapers.com/images/walls/thumbs_3t/10116.png",
+    ]
+
+    // change the images every 3 seconds
+    let i = 0
+    setInterval(() => {
+      document.querySelector(".image-placeholder").style.backgroundImage = `url(${milkMochaImageLinks[i]})`
+      i = (i + 1) % milkMochaImageLinks.length
+    }, 3000)
   </script>
-  <main>
-    <header id="countdown">
-      Noombs Milne Mein
-      <span id='days'>0</span>
-      <span id='hours'>0</span>
-      <span id='minutes'>0</span>
-      <span id='seconds'>0</span>
-    </header>
-    <img
-      src="https://lh3.googleusercontent.com/pw/AIL4fc8e4ET1aVCVILVENttJXzA--lj-6tySqSJD21YBZLuqwIZKAH28liIY_Ee-dvAkCvufFHKkBsv6WDZ9puCxG5oDvnS5NWMGdUx3rvm00VxT-Kr-48bgsJu2__R41aikB40zlsv-ov9HEcSG0lH90n2P=w667-h889-s-no?authuser=0">
-    <img
-      src="https://lh3.googleusercontent.com/pw/AIL4fc9GBkzRvDUIPzxnvHVyfBpGOZF8XecIxkBYUy7Pfy6MyN29QlLRLUAUevQiFoXEThxX56qf5aG-Fljvo8GLtuUSpBzR01fWQVkJ6-36o7SGy9FXYuPaE8MGhb433cA9C3vyH35b5i7xzdvoMsZQRDBb=w667-h889-s-no?authuser=0">
 
-    <div id="pratham" class="todo-block">
-      <ul class="pratham-todos">
-
-      </ul>
-      <form id="add-pratham-todo" class="add-todo-form">
-        <p>
-          😳
-        </p>
-        <input type="text" id="pratham-todo-input" placeholder="What's on you mind?">
-        <button type="submit">Add</button>
-      </form>
-    </div>
-
-    <div id="appu" class="todo-block">
-      <ul class="appu-todos">
-
-      </ul>
-      <form id="add-appu-todo" class="add-todo-form">
-        <p>
-          ❤️
-        </p>
-        <input type="text" id="appu-todo-input" placeholder="What's on you mind?" name="add-todo">
-        <button type="submit">Add</button>
-      </form>
-    </div>
-
-    <script>
-      window.onload = async () => {
-        await rerender();
-      }
-      const prathamAddTODOForm = document.getElementById('add-pratham-todo');
-
-      prathamAddTODOForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const prathamTODOInput = document.getElementById('pratham-todo-input');
-        const prathamTODO = prathamTODOInput.value;
-        prathamTODOInput.value = '';
-
-        await fetch('/todos.create', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            creator: 'pratham',
-            text: prathamTODO,
-            created_at: new Date().toISOString()
-          })
-        });
-        
-        await rerender();
-      });
-
-      const appuAddTODOForm = document.getElementById('add-appu-todo');
-
-        appuAddTODOForm.addEventListener('submit', async (event) => {
-          event.preventDefault();
-          const appuTODOInput = document.getElementById('appu-todo-input');
-          const appuTODO = appuTODOInput.value;
-          appuTODOInput.value = '';
-
-          await fetch('/todos.create', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              creator: 'appu',
-              text: appuTODO,
-            })
-          });
-        
-        await rerender();
-      });
-
-      async function rerender() {
-        const listTodosResponse = await fetch('/todos.list');
-
-        const { results } = await listTodosResponse.json();
-
-        console.log(results);
-
-        const prathamTODOList = document.getElementsByClassName('pratham-todos');
-        const appuTODOList = document.getElementsByClassName('appu-todos');
-
-        prathamTODOList[0].innerHTML = '';
-
-        appuTODOList[0].innerHTML = '';
-
-        const todos = [];
-
-        for (let i = 0; i < results.length; i++) {
-          console.log(results[i], results[i].key);
-          const getTODOResponse = await fetch(`/todos.get?id=${results[i].key}`);
-          const {props} = await getTODOResponse.json();
-          console.log({props});
-          todos.push(props);
-        };
-
-        console.log({todos});
-
-        todos.forEach((todo) => {
-          console.log(todo);
-          if (todo.creator === 'pratham') {
-            const prathamTODOListItem = document.createElement('li');
-            prathamTODOListItem.innerHTML = `<span class="custom-bullet">😳</span> ${todo.text}`;
-            prathamTODOList[0].appendChild(prathamTODOListItem);
-          } else {
-            const appuTODOListItem = document.createElement('li');
-            appuTODOListItem.innerHTML = `<span class="custom-bullet">❤️</span> ${todo.text}`;
-            appuTODOList[0].appendChild(appuTODOListItem);
-          }
-        });
-      }
-    </script>
-  </main>
-  <audio autoplay loop>
-    <source src="https://ghantalele.com/uploads/files/data-75/37273/Madhubala%20-%20Amit%20Trivedi_192(Ghantalele.com).mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 </body>
 
 </html>
